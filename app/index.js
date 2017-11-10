@@ -24,7 +24,7 @@
          status: 'If you\’re working on something that you think is going to get accomplished in this lifetime then you’re not thinking big enough'
        }
      ]
-  }
+  };
 
 class Photo extends React.Component{
   render(){
