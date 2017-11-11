@@ -12,20 +12,20 @@
      },
      updates: [
        {
-         platform: 'twitter',
-         status: 'I\'m happy, hope you\'re happy too!'
+         platform: 'my brain',
+         status: 'The Mars Volta are the greatest'
        },
        {
-         platform: 'twitter',
-         status: 'The better the singer\'s voice, the harder it is to hear what they\'re saying'
+         platform: 'F Scott Fitzgerald\'s brain',
+         status: 'The test of a first rate intelligence is the ability to hold two opposed ideas in the mind at the same time, and still retain the ability to function'
        },
        {
-         platform: 'twitter',
-         status: 'Fear makes the wolf look bigger'
+         platform: 'Willa Cather\'s brain',
+         status: 'Time is good for violent people'
        },
        {
-         platform: 'facebook',
-         status: 'If you\’re working on something that you think is going to get accomplished in this lifetime then you’re not thinking big enough'
+         platform: 'Elon Musk',
+         status: 'Like why did you go steal Tesla’s E? Like you’re some sort of fascist army marching across the alphabet, some sort of Sesame Street robber?'
        }
      ]
   };
@@ -55,12 +55,20 @@ class Bio extends React.Component{
 }
 
 class Updates extends React.Component{
+    updates(){
+        return this.props.updates.map(function(update, index){
+            return(
+              <li className={'update ' + update.platform} key={index}>
+                  {update.status}
+              </li>
+            )
+        });
+    }
     render(){
       return(
           <div className='updates'>
              <ul>
-               <li className="update">Updates</li>
-               <li className="update">Updates</li>
+                 {this.updates()}
              </ul>
           </div>
       )
@@ -74,7 +82,7 @@ class Card extends React.Component{
           <div className="card">
             <Photo photoHeight={person.photo.height} photoWidth={person.photo.width} photoSrc={person.photo.src}/>
             <Bio name={person.name} location={person.location} occupation={person.occupation}/>
-            <Updates />
+            <Updates updates={person.updates}/>
           </div>
         )
     }

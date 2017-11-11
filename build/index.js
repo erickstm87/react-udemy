@@ -21,17 +21,17 @@ var person = {
     width: '300px'
   },
   updates: [{
-    platform: 'twitter',
-    status: 'I\'m happy, hope you\'re happy too!'
+    platform: 'my brain',
+    status: 'The Mars Volta are the greatest'
   }, {
-    platform: 'twitter',
-    status: 'The better the singer\'s voice, the harder it is to hear what they\'re saying'
+    platform: 'F Scott Fitzgerald\'s brain',
+    status: 'The test of a first rate intelligence is the ability to hold two opposed ideas in the mind at the same time, and still retain the ability to function'
   }, {
-    platform: 'twitter',
-    status: 'Fear makes the wolf look bigger'
+    platform: 'Willa Cather\'s brain',
+    status: 'Time is good for violent people'
   }, {
-    platform: 'facebook',
-    status: 'If you\’re working on something that you think is going to get accomplished in this lifetime then you’re not thinking big enough'
+    platform: 'Elon Musk',
+    status: 'Like why did you go steal Tesla’s E? Like you’re some sort of fascist army marching across the alphabet, some sort of Sesame Street robber?'
   }]
 };
 
@@ -111,6 +111,17 @@ var Updates = function (_React$Component3) {
   }
 
   _createClass(Updates, [{
+    key: 'updates',
+    value: function updates() {
+      return this.props.updates.map(function (update, index) {
+        return React.createElement(
+          'li',
+          { className: 'update ' + update.platform, key: index },
+          update.status
+        );
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -119,16 +130,7 @@ var Updates = function (_React$Component3) {
         React.createElement(
           'ul',
           null,
-          React.createElement(
-            'li',
-            { className: 'update' },
-            'Updates'
-          ),
-          React.createElement(
-            'li',
-            { className: 'update' },
-            'Updates'
-          )
+          this.updates()
         )
       );
     }
@@ -154,7 +156,7 @@ var Card = function (_React$Component4) {
         { className: 'card' },
         React.createElement(Photo, { photoHeight: person.photo.height, photoWidth: person.photo.width, photoSrc: person.photo.src }),
         React.createElement(Bio, { name: person.name, location: person.location, occupation: person.occupation }),
-        React.createElement(Updates, null)
+        React.createElement(Updates, { updates: person.updates })
       );
     }
   }]);
