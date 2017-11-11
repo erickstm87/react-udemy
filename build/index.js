@@ -9,13 +9,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var person = {
-  name: 'Chris Castig',
-  location: 'Brooklyn, New York',
+  name: 'Tom Erickson',
+  location: 'Boulder, Colorado',
   occupation: {
-    title: 'Protecting Freedom',
-    employer: '@onemonthedu'
+    title: 'Developer of Exciting Stuff',
+    employer: 'SpotX'
   },
-  photo: './images/escalante.png',
+  photo: {
+    src: './images/escalante.png',
+    height: '225px',
+    width: '300px'
+  },
   updates: [{
     platform: 'twitter',
     status: 'I\'m happy, hope you\'re happy too!'
@@ -46,7 +50,7 @@ var Photo = function (_React$Component) {
       return React.createElement(
         'div',
         { className: 'photo' },
-        React.createElement('img', { src: './images/escalante.png', alt: 'Photo' })
+        React.createElement('img', { width: this.props.photoWidth, height: this.props.photoHeight, src: this.props.photoSrc, alt: 'Photo' })
       );
     }
   }]);
@@ -72,12 +76,12 @@ var Bio = function (_React$Component2) {
         React.createElement(
           'h1',
           { className: 'name' },
-          'Chris.name'
+          this.props.name
         ),
         React.createElement(
           'h2',
           { className: 'location' },
-          'Brooklyn, New York'
+          this.props.location
         ),
         React.createElement(
           'div',
@@ -85,7 +89,9 @@ var Bio = function (_React$Component2) {
           React.createElement(
             'p',
             null,
-            'Protecting Freedom @ onemonthedu'
+            this.props.occupation.title,
+            ' at ',
+            this.props.occupation.employer
           )
         )
       );
@@ -146,8 +152,8 @@ var Card = function (_React$Component4) {
       return React.createElement(
         'div',
         { className: 'card' },
-        React.createElement(Photo, null),
-        React.createElement(Bio, null),
+        React.createElement(Photo, { photoHeight: person.photo.height, photoWidth: person.photo.width, photoSrc: person.photo.src }),
+        React.createElement(Bio, { name: person.name, location: person.location, occupation: person.occupation }),
         React.createElement(Updates, null)
       );
     }

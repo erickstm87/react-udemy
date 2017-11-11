@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "babel": "babel app -d build"
+    "babel": "babel app --watch -d build"
   },
   "repository": {
     "type": "git",

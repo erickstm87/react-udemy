@@ -1,11 +1,15 @@
   var person = {
-     name: 'Chris Castig',
-     location: 'Brooklyn, New York',
+     name: 'Tom Erickson',
+     location: 'Boulder, Colorado',
      occupation: {
-       title: 'Protecting Freedom',
-       employer: '@onemonthedu'
+       title: 'Developer of Exciting Stuff',
+       employer: 'SpotX'
      },
-     photo: './images/escalante.png',
+     photo: {
+       src: './images/escalante.png',
+       height: '225px',
+       width: '300px'
+     },
      updates: [
        {
          platform: 'twitter',
@@ -30,7 +34,7 @@ class Photo extends React.Component{
   render(){
     return(
         <div className="photo">
-            <img src="./images/escalante.png" alt="Photo" />
+            <img width={this.props.photoWidth} height={this.props.photoHeight} src={this.props.photoSrc} alt="Photo" />
         </div>
     )
   }
@@ -40,10 +44,10 @@ class Bio extends React.Component{
     render(){
       return(
           <div className="bio">
-              <h1 className="name">Chris.name</h1>
-              <h2 className="location">Brooklyn, New York</h2>
+              <h1 className="name">{this.props.name}</h1>
+              <h2 className="location">{this.props.location}</h2>
               <div className="occupation">
-                <p>Protecting Freedom @ onemonthedu</p>
+                <p>{this.props.occupation.title} at {this.props.occupation.employer}</p>
               </div>
           </div>
       )
@@ -68,8 +72,8 @@ class Card extends React.Component{
     render(){
         return(
           <div className="card">
-            <Photo />
-            <Bio />
+            <Photo photoHeight={person.photo.height} photoWidth={person.photo.width} photoSrc={person.photo.src}/>
+            <Bio name={person.name} location={person.location} occupation={person.occupation}/>
             <Updates />
           </div>
         )
