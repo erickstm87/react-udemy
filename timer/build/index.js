@@ -19,9 +19,13 @@ class PomodoroTimer extends React.Component {
 
     elapseTime() {
         //how much time has elapsed
-        var currentDate = new Date();
-        console.log(this.state.start);
-        //var timeElapsed = Current time - start time
+        var timeElapsed = Math.floor((new Date() - this.state.start) / 1000);
+
+        this.setState({ timeElapsed: timeElapsed });
+        //if timeElapsed = 25 minutes -> then alert
+        if (Math.floor(timeElapsed / 1000) === 1500) {
+            alert('the ravages of time spares no one!!!!');
+        }
     }
 
     render() {
@@ -36,9 +40,9 @@ class PomodoroTimer extends React.Component {
             this.totalTime(this.props.workingTime, this.props.restingTime),
             '. ',
             React.createElement('br', null),
-            'There are ',
+            ' ',
             this.state.timeElapsed,
-            ' elapsed seconds'
+            ' seconds have elapsed'
         );
     }
 }
