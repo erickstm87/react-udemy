@@ -17,14 +17,19 @@ class PomodoroTimer extends React.Component {
         this.setState({ start: new Date() });
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     elapseTime() {
         //how much time has elapsed
         var timeElapsed = Math.floor((new Date() - this.state.start) / 1000);
 
         this.setState({ timeElapsed: timeElapsed });
-        //if timeElapsed = 25 minutes -> then alert
-        if (Math.floor(timeElapsed / 1000) === 1500) {
-            alert('the ravages of time spares no one!!!!');
+
+        if (timeElapsed === this.props.workingTime * 60) {
+            clearInterval(this.interval);
+            alert('the ravages of time spare no one!!!!');
         }
     }
 
