@@ -1,10 +1,28 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const product = require('./products.js');
+
+class Results extends React.Component{
+    render(){
+      return(
+
+      )
+    }
+}
 
 class SearchBar extends React.Component {
-    handleQuery(event){
-      console.log(event.target.value);
+
+    constructor(props){
+        super(props);
+        this.state = {
+            query: ''
+        }
     }
+
+    handleQuery(query){
+        //this.setState({'query': })
+    }
+
     render(){
       return(
           <div className='search-bar'>
@@ -19,13 +37,7 @@ class Search extends React.Component {
         return(
             <div className="search">
                 <SearchBar />
-                <div className='results'>
-                  <div className="in-stock">
-                     <h2><a href="#">Toothpaste</a></h2>
-                     <p>$2.99</p>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labor</p>
-                      </div>
-                  </div>
+                <Results />
                 </div>
 
         )
