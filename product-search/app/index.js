@@ -2,25 +2,19 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const product = require('./products.js');
 
-class Results extends React.Component{
-    render(){
-      return(
-
-      )
-    }
-}
+// class Results extends React.Component{
+//     render(){
+//       return(
+//
+//       )
+//     }
+// }
 
 class SearchBar extends React.Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            query: ''
-        }
-    }
-
-    handleQuery(query){
-        //this.setState({'query': })
+    handleQuery(event){
+      this.props.onQuery(event.target.value);
+        console.log(event.target.value);
     }
 
     render(){
@@ -33,11 +27,24 @@ class SearchBar extends React.Component {
 }
 
 class Search extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            query: ''
+        }
+    }
+
+    handleQuery(query){
+        console.log(query);
+        //this.setState({'query': })
+    }
+
     render() {
         return(
             <div className="search">
-                <SearchBar />
-                <Results />
+                <SearchBar onQuery={this.handleQuery.bind(this)}/>
+                //<Results />
                 </div>
 
         )
