@@ -2,20 +2,50 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const products = require('./products.js');
 
+class Result extends React.Component{
+    displayPrice(price){
+      return(price/100);
+    }
+    render(){
+      return(
+        <div className="in-stock">
+            <h2><a href="#">{this.props.product.name}</a></h2>
+            <p>{this.displayPrice(this.props.product.price)}</p>
+            <p>{this.props.product.description}</p>
+        </div>
+      )
+    }
+}
+
 class Results extends React.Component{
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps.query);
-        console.log('hey here ', nextProps.products);
+    constructor(props){
+        super(props);
+        this.state = {
+            foundProducts: props.products
+        }
+    }
+
+    componentWillReceiveProps (nextProps) {
+      var foundProducts = nextProps.products.filter(function(product){
+
+      return product.name.toLowerCase().match(nextProps.query.toLowerCase())
+      || product.description.toLowerCase().match(nextProps.query.toLowerCase());
+
+      });
+      this.setState({
+      foundProducts: foundProducts
+      });
     }
     render(){
       return(
         <div className="results">
-         <div className="in-stock">
-             <h2><a href="#">Toothpaste</a></h2>
-             <p>$2.99</p>
-             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labor</p>
-         </div>
+          {this.state.foundProducts.map(function(product,i){
+              return(
+                <Result product={product} key={i} />
+
+              )
+          })}
          </div>
       )
     }
