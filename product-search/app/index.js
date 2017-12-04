@@ -1,8 +1,13 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const product = require('./products.js');
+const products = require('./products.js');
 
 class Results extends React.Component{
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.query);
+        console.log('hey here ', nextProps.products);
+    }
     render(){
       return(
         <div className="results">
@@ -50,11 +55,11 @@ class Search extends React.Component {
         return(
             <div className="search">
                 <SearchBar onQuery={this.handleQuery.bind(this)}/>
-                <Results />
+                <Results products={this.props.products} query={this.state.query} />
                 </div>
 
         )
     }
 }
 
-ReactDOM.render(<Search />, document.getElementById('app'));
+ReactDOM.render(<Search products={products}/>, document.getElementById('app'));
