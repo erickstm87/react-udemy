@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const products = require('./products.js');
-
+//comment
 class Result extends React.Component{
     displayPrice(price){
       return(price/100);
